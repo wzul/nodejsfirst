@@ -8,11 +8,10 @@ const server = http.createServer((request, response) => {
   var chipp = new Chip.PaymentApi();
 
   if (request.method == 'POST') {
-    console.log('POST')
-    var body = '';    
+    console.log('POST')  
     
     request.on('data', function(data) {
-      body+=data;
+
       
       var signature = request.headers['x-signature'];
 
