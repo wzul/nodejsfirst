@@ -12,6 +12,8 @@
     "heroku"
   ],
   "author": "wan",
-  "license": "ISC"
-
+  "license": "ISC",
+  "dependencies": {
+    "Chip": "file:chip_nodejs.tgz"
+  }
 }
