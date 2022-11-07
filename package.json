@@ -12,9 +12,6 @@
     "heroku"
   ],
   "author": "wan",
-  "license": "ISC",
-  "engines": {
-    "node": "18.x"
-  }
+  "license": "ISC"
 
 }
