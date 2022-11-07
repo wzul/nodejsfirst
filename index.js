@@ -1,3 +1,4 @@
+const { sign } = require('crypto');
 const http = require('http');
 
 const server = http.createServer((request, response) => {
@@ -14,9 +15,13 @@ const server = http.createServer((request, response) => {
       body+=data;
       
       var signature = request.headers['x-signature'];
-      var publicKey = '-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAxUI+CR2F5DeFtZdZAtek\nSWMOgh4ToH/oez8T1oCj2AIuRi7w+8Yq9WCnncfg4ZQ0MCyZi0yIMmrJigAfH6wf\no/npilTKmQMdvNAAZyvHZbj75iyQ4CpU34ujHSFjjEUGoxFLNxjAQ3ycreYErHQC\n5DbMGU+u1cKvyT3rFzn/Wq5ILs4/H0ZG/O1ZvI50pojQIYmivWKGr93D45QUUIT9\nsRFGY7dyIPgaNy7T0GLPrkLL+zkXtgQ3ipz6/hEU7Y3TJtdBawvE2/YIqHZFPXpx\nFejUkU6/8kAoBTIVdCU2EVsphuwzGiEKpvfdEut/ns2xXrGdRhRaVQ1wV8+Jm4O5\nyASogAB+BL4RqjkzqN6DpVkaD3KK09XxhSgYelNl3NBf8P69H8kjtZ1zhLyGCc4K\nu2H2spW8XrK7XkjITSC61R91OU5hDMem8n3VQASi2B5/Hqi0n3fnx7qRiNAPXDsU\nbWrqESwpLPBjXjREYwGY0/XY+mRvGGToJ8+HPBLRVFTtAgMBAAE=\n-----END PUBLIC KEY-----\n';
+
+      console.log('ini signature: ' + signature);
+      var publicKey = '-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEA1P+PnZyqguEJuxgGKEwY\nVvT3ERcDjfV5P+W/N4pN7dWZHLlunsB0kAy6PD7/K+QaOqWx3fezty+M/dMUDlMR\njYJo5OF0mnkR1YcRhTcHL4jf0QECB7eAYHXwguZlUWzvLQLRqN3bT6qsiOEJzxVE\nphuC8A5OnF1GlGQiHlALOAy9qUHB3uC4sJZUIqLPqilTOO+QePapFDgJHz8aY7D8\nFBQxTFfAG+r0pNNMRgdpT6VxZAxVPmtiD7VCpfvNo2/lvt0fDlxPM03EtNSvA6G4\nDt6+8QDhzDiIOI38b0+HkPCpXoVpgA10liTL3OjDfZuGcLOBKxA3NQPMp/oGj1SS\nNwlyJpDLjizQZSqaGx5hW7Qq65/iOpr2qllR1wIRGWO5OtpzQM7VSOLOYidJOFz6\nA3HItnadtAcz7Ek6o7Sva0kMIbYlqbWwLjAUWOSxW27dvk1KS5LJocUSbCeaa9T4\nAPjh5kJMX/RDrUMEGOMjJFc33RP6Hpsi7ORU9AcaS8TbAgMBAAE=\n-----END PUBLIC KEY-----\n';
+      console.log('ini body: ' + body);
+
       var result = chipp.verify(data, Buffer.from(signature, 'base64'), publicKey);
-        console.log('Verification: ' + result);
+      console.log('Verification: ' + result);
     })
 
     request.on('end', function() {
